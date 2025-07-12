@@ -10,16 +10,34 @@ st.title("🎯 LGS Tercih Robotu 2025")
 # Veri yükleme
 df = pd.read_csv("veri.csv.csv", encoding="ISO-8859-9", sep=";")
 
-# 2025 tahmini (2022, 2023, 2024'e göre)
-df = df.dropna(subset=["2022", "2023", "2024"])
+from sklearn.linear_model import LinearRegression
+import numpy as np
+
 def tahmin_et(satir):
-    yillar = [[1], [2], [3]]  # 2022, 2023, 2024
-    yuzdelikler = [satir["2022"], satir["2023"], satir["2024"]]
-    
-    model = LinearRegression()
-    model.fit(yillar, yuzdelikler)
-    tahmin = model.predict([[4]])[0]  # 2025 için yıl = 4
-    return round(tahmin, 2)
+    veriler = []
+
+    if satir["2022"] > 0:
+        veriler.append((1, satir["2022"]))
+    if satir["2023"] > 0:
+        veriler.append((2, satir["2023"]))
+    if satir["2024"] > 0:
+        veriler.append((3, satir["2024"]))
+
+    veri_sayisi = len(veriler)
+
+    if veri_sayisi == 0:
+        return np.nan  # Hiç geçerli veri yoksa
+    elif veri_sayisi == 1:
+        return round(veriler[0][1], 2)  # Tek veri varsa onu döndür
+    else:
+        X = np.array([[x[0]] for x in veriler])
+        y = np.array([x[1] for x in veriler])
+
+        model = LinearRegression()
+        model.fit(X, y)
+        tahmin = model.predict([[4]])[0]  # 2025 yılı = 4. yıl
+
+        return round(tahmin, 2)
 
 df["2025 Tahmin"] = df.apply(tahmin_et, axis=1)
 
