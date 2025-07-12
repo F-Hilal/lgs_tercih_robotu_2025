@@ -51,5 +51,5 @@ eslesen_okullar = df_filtreli[
 ].sort_values("2025 Tahmin")
 
 # Sonuçları göster
-st.subheader(f"📋 {alt_sinir}–{ust_sinir} arası uygun okullar")
+st.subheader(f"📋 {alt_sinir:.2f}–{ust_sinir:.2f} arası uygun okullar")
 st.dataframe(eslesen_okullar[["OKUL ADI", "İLÇE", "ALAN", "2022", "2023", "2024", "2025 Tahmin"]])
