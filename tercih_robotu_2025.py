@@ -8,7 +8,7 @@ st.set_page_config(page_title="LGS Tercih Robotu 2025", layout="wide")
 st.title("🎯 LGS Tercih Robotu 2025")
 
 # Veri yükleme
-df = pd.read_csv("veri.csv", encoding="ISO-8859-9", sep=";")
+df = pd.read_csv("veri.csv.csv", encoding="ISO-8859-9", sep=";")
 
 # 2025 tahmini (2022, 2023, 2024'e göre)
 df = df.dropna(subset=["2022", "2023", "2024"])
