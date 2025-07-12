@@ -10,33 +10,33 @@ st.title("🎯 LGS Tercih Robotu 2025")
 # Veri yükleme
 df = pd.read_csv("veri.csv.csv", encoding="ISO-8859-9", sep=";")
 
+for yil in ["2022", "2023", "2024"]:
+    df[yil] = pd.to_numeric(df[yil], errors="coerce")
+
 from sklearn.linear_model import LinearRegression
 import numpy as np
 
 def tahmin_et(satir):
     veriler = []
 
-    if satir["2022"] > 0:
-        veriler.append((1, satir["2022"]))
-    if satir["2023"] > 0:
-        veriler.append((2, satir["2023"]))
-    if satir["2024"] > 0:
-        veriler.append((3, satir["2024"]))
+    for i, yil in enumerate(["2022", "2023", "2024"], start=1):
+        try:
+            deger = float(satir[yil])
+            if deger > 0:
+                veriler.append((i, deger))
+        except:
+            continue  # Sayı değilse veya boşsa atla
 
-    veri_sayisi = len(veriler)
-
-    if veri_sayisi == 0:
-        return np.nan  # Hiç geçerli veri yoksa
-    elif veri_sayisi == 1:
-        return round(veriler[0][1], 2)  # Tek veri varsa onu döndür
+    if len(veriler) == 0:
+        return np.nan
+    elif len(veriler) == 1:
+        return round(veriler[0][1], 2)
     else:
-        X = np.array([[x[0]] for x in veriler])
-        y = np.array([x[1] for x in veriler])
-
+        X = np.array([[v[0]] for v in veriler])
+        y = np.array([v[1] for v in veriler])
         model = LinearRegression()
         model.fit(X, y)
-        tahmin = model.predict([[4]])[0]  # 2025 yılı = 4. yıl
-
+        tahmin = model.predict([[4]])[0]
         return round(tahmin, 2)
 
 df["2025 Tahmin"] = df.apply(tahmin_et, axis=1)
@@ -70,4 +70,5 @@ eslesen_okullar = df_filtreli[
 
 # Sonuçları göster
 st.subheader(f"📋 {alt_sinir:.2f}–{ust_sinir:.2f} arası uygun okullar")
+st.markdown("📌 Bu listeye giren okullar için **2025 tahminlerinde ortalama ±3 yüzdelik puan sapma** beklenebilir.")
 st.dataframe(eslesen_okullar[["OKUL ADI", "İLÇE", "ALAN", "2022", "2023", "2024", "2025 Tahmin"]])
