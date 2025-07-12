@@ -12,12 +12,16 @@ df = pd.read_csv("veri.csv.csv", encoding="ISO-8859-9", sep=";")
 
 # 2025 tahmini (2022, 2023, 2024'e göre)
 df = df.dropna(subset=["2022", "2023", "2024"])
-X = df[["2022", "2023", "2024"]]
-y = df["2024"]
+def tahmin_et(satir):
+    yillar = [[1], [2], [3]]  # 2022, 2023, 2024
+    yuzdelikler = [satir["2022"], satir["2023"], satir["2024"]]
+    
+    model = LinearRegression()
+    model.fit(yillar, yuzdelikler)
+    tahmin = model.predict([[4]])[0]  # 2025 için yıl = 4
+    return round(tahmin, 2)
 
-model = LinearRegression()
-model.fit(X, y)
-df["2025 Tahmin"] = model.predict(X).round(2)
+df["2025 Tahmin"] = df.apply(tahmin_et, axis=1)
 
 # Filtreler
 ilceler = sorted(df["İLÇE"].dropna().unique())
