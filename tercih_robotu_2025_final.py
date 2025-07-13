@@ -96,16 +96,13 @@ wrapped_html = f"""
         background-color: #f9f9f9;
     }}
 
-    /* 🎯 Sadece belirli sütunlara özel stil */
-    td:nth-child(1), td:nth-child(2), td:nth-child(7), th:nth-child(1), th:nth-child(2), th:nth-child(7) {{
-        text-align: left;
-        word-wrap: break-word;
-        word-break: break-word;
-        white-space: normal;
-        max-width: 200px;
-    }}
+    /* 📌 Sütun özel genişlikler */
+    td:nth-child(1), th:nth-child(1) {{ width: 120px; text-align: left; }}
+    td:nth-child(2), th:nth-child(2) {{ text-align: left; }}
+    td:nth-child(7), th:nth-child(7) {{ width: 120px; text-align: left; }}
+    td:nth-child(8), th:nth-child(8) {{ width: 120px; text-align: left; }}
 
-    /* 🔢 Sayısal sütunlar daha dar olsun */
+    /* 🔢 Sayısal sütunlar dar */
     td:nth-child(3), td:nth-child(4), td:nth-child(5), td:nth-child(6),
     th:nth-child(3), th:nth-child(4), th:nth-child(5), th:nth-child(6) {{
         width: 60px;
