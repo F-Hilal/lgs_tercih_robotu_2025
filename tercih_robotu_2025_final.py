@@ -72,23 +72,22 @@ st.markdown("ℹ️ Bu analiz geçmiş yıllara dayanarak yapıldığı için 20
 # Sonuç tablosu
 import streamlit.components.v1 as components
 
-html_table = eslesen_okullar[["İLÇE", "OKUL ADI", "2022", "2023", "2024", "2025 Tahmin", "ALAN", "OKUL TÜRÜ"]].to_html(index=False, escape=False)
+html_table = eslesen_okullar[["İLÇE", "OKUL ADI", "2022", "2023", "2024", "2025 Tahmin", "ALAN", "TÜR"]].to_html(index=False, escape=False)
+
 wrapped_html = f"""
 <div style="overflow-x:auto; max-width:100%;">
     <style>
-        table {{ 
+        table {{
             width: 100%;
             table-layout: auto;
             word-wrap: break-word;
             white-space: normal;
             font-size: 14px;
-            border-collapse: collapse;
         }}
         th, td {{
             padding: 6px;
-            text-align: center;
-            vertical-align: middle;
-            border: 1px solid #ddd;
+            text-align: left;         /* YATAY: sola hizala */
+            vertical-align: middle;   /* DİKEY: ortala */
         }}
     </style>
     {html_table}
