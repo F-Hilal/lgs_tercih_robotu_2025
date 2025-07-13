@@ -69,18 +69,20 @@ st.markdown("ℹ️ Bu analiz geçmiş yıllara dayanarak yapıldığı için 20
 # Sonuç tablosu
 import streamlit.components.v1 as components
 
-html_table = eslesen_okullar[["İLÇE", "OKUL ADI", "2022", "2023", "2024", "2025 Tahmin", "ALAN", "OKUL TÜRÜ"]].to_html(index=False, escape=False, classes=["lgs-table"])
+html_table = eslesen_okullar[["İLÇE", "OKUL ADI", "2022", "2023", "2024", "2025 Tahmin", "OKUL TÜRÜ"]].to_html(
+    index=False, escape=False, classes=["lgs-table"]
+)
 
 wrapped_html = f"""
 <style>
-    div.lgs-container {{
-        width: 80%;
+    .lgs-container {{
+        overflow-x: auto;
+        max-width: 100%;
         margin: auto;
     }}
     table.lgs-table {{
-        width: 100%;
-        table-layout: fixed;
         border-collapse: collapse;
+        width: 100%;
         font-size: 14px;
     }}
     table.lgs-table th, table.lgs-table td {{
@@ -93,19 +95,6 @@ wrapped_html = f"""
     table.lgs-table th {{
         background-color: #f0f2f6;
     }}
-
-    /* İLÇE sütunu daraltıldı */
-    table.lgs-table td:nth-child(1),
-    table.lgs-table th:nth-child(1) {{
-        width: 106px;
-    }}
-
-    /* OKUL ADI sütunu genişletildi */
-    table.lgs-table td:nth-child(2),
-    table.lgs-table th:nth-child(2) {{
-        width: 284px;
-    }}
-
     /* Sayısal sütunlara özel daraltma */
     table.lgs-table td:nth-child(3),
     table.lgs-table td:nth-child(4),
