@@ -69,7 +69,7 @@ st.markdown("ℹ️ Bu analiz geçmiş yıllara dayanarak yapıldığı için 20
 # Sonuç tablosu
 import streamlit.components.v1 as components
 
-html_table = eslesen_okullar[["İLÇE", "OKUL ADI", "2022", "2023", "2024", "2025 Tahmin", "OKUL TÜRÜ"]].to_html(
+html_table = eslesen_okullar[["İLÇE", "OKUL ADI", "2022", "2023", "2024", "2025 Tahmin", "OKUL TÜRÜ", "ALAN"]].to_html(
     index=False, escape=False, classes=["lgs-table"]
 )
 
