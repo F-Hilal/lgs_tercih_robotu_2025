@@ -94,6 +94,18 @@ wrapped_html = f"""
         background-color: #f0f2f6;
     }}
 
+    /* İLÇE sütunu daraltıldı */
+    table.lgs-table td:nth-child(1),
+    table.lgs-table th:nth-child(1) {{
+        width: 90px;
+    }}
+
+    /* OKUL ADI sütunu genişletildi */
+    table.lgs-table td:nth-child(2),
+    table.lgs-table th:nth-child(2) {{
+        width: 300px;
+    }}
+
     /* Sayısal sütunlara özel daraltma */
     table.lgs-table td:nth-child(3),
     table.lgs-table td:nth-child(4),
