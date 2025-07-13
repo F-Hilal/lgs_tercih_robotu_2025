@@ -70,7 +70,6 @@ st.subheader(f"📋 {alt_sinir:.2f}–{ust_sinir:.2f} arası uygun okullar")
 st.markdown("ℹ️ Bu analiz geçmiş yıllara dayanarak yapıldığı için 2025 tahminleri için yaklaşık bir güven aralığı verir. Ortalama ±3 puan sapma beklenebilir.")
 
 # Sonuç tablosu
-from IPython.core.display import HTML
 import streamlit.components.v1 as components
 
 html_table = eslesen_okullar[["İLÇE", "OKUL ADI", "2022", "2023", "2024", "2025 Tahmin", "ALAN", "TÜR"]].to_html(index=False, escape=False)
