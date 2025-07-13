@@ -104,13 +104,18 @@ wrapped_html = f"""
         white-space: normal;
         max-width: 200px;
     }}
+
+    /* 🔢 Sayısal sütunlar daha dar olsun */
+    td:nth-child(3), td:nth-child(4), td:nth-child(5), td:nth-child(6),
+    th:nth-child(3), th:nth-child(4), th:nth-child(5), th:nth-child(6) {{
+        width: 60px;
+    }}
 </style>
 
 <div style="overflow-x:auto;">
     {html_table}
 </div>
 """
-
 st.markdown(wrapped_html, unsafe_allow_html=True)
 
 # Excel olarak indirme
