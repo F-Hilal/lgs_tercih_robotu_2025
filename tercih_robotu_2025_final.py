@@ -70,7 +70,33 @@ st.subheader(f"📋 {alt_sinir:.2f}–{ust_sinir:.2f} arası uygun okullar")
 st.markdown("ℹ️ Bu analiz geçmiş yıllara dayanarak yapıldığı için 2025 tahminleri için yaklaşık bir güven aralığı verir. Ortalama ±3 puan sapma beklenebilir.")
 
 # Sonuç tablosu
-st.dataframe(eslesen_okullar[["OKUL ADI", "İLÇE", "ALAN", "OKUL TÜRÜ", "2022", "2023", "2024", "2025 Tahmin"]])
+from IPython.core.display import HTML
+import streamlit.components.v1 as components
+
+html_table = eslesen_okullar[["İLÇE", "OKUL ADI", "2022", "2023", "2024", "2025 Tahmin", "ALAN", "TÜR"]].to_html(index=False, escape=False)
+
+wrapped_html = f"""
+<div style="overflow-x:auto; max-width:100%;">
+    <style>
+        table {{
+            width: 100%;
+            table-layout: auto;
+            word-wrap: break-word;
+            white-space: normal;
+            font-size: 14px;
+        }}
+        th, td {{
+            padding: 6px;
+            text-align: left;
+            vertical-align: top;
+        }}
+    </style>
+    {html_table}
+</div>
+"""
+
+st.subheader(f"📋 {alt_sinir:.2f}–{ust_sinir:.2f} arası uygun okullar")
+st.markdown(wrapped_html, unsafe_allow_html=True)
 
 # Excel olarak indirme
 def convert_df_to_excel(df):
