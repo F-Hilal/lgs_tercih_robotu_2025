@@ -8,7 +8,7 @@ st.set_page_config(page_title="LGS Tercih Robotu 2025", layout="wide")
 st.title("🎯 LGS Tercih Robotu 2025")
 
 # Veri yükleme
-df = pd.read_csv("veri_duzenli.csv", encoding="ISO-8859-9")
+df = pd.read_csv("veri_duzenli.csv", encoding="utf-8-sig")
 for yil in ["2022", "2023", "2024"]:
     df[yil] = pd.to_numeric(df[yil], errors="coerce")
 
