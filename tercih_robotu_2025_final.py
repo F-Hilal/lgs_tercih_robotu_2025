@@ -46,7 +46,6 @@ secili_turler = st.multiselect("🏷️ Okul Türünü Seçin", options=okul_tur
 # Filtreleme işlemi
 df_filtreli = df[
     (df["İLÇE"].isin(secili_ilceler)) &
-    (df["ALAN"].isin(secili_alanlar)) &
     (df["OKUL TÜRÜ"].isin(secili_turler))
 ]
 
