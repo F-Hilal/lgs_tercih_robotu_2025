@@ -38,11 +38,9 @@ df["2025 Tahmin"] = df.apply(tahmin_et, axis=1)
 
 # Filtreler
 ilceler = sorted(df["İLÇE"].dropna().unique())
-alanlar = sorted(df["ALAN"].dropna().unique())
 okul_turleri = sorted(df["OKUL TÜRÜ"].dropna().unique())
 
 secili_ilceler = st.multiselect("📍 İlçeleri Seçin", options=ilceler, default=ilceler)
-secili_alanlar = st.multiselect("🏫 Alanları Seçin", options=alanlar, default=alanlar)
 secili_turler = st.multiselect("🏷️ Okul Türünü Seçin", options=okul_turleri, default=okul_turleri)
 
 # Filtreleme işlemi
