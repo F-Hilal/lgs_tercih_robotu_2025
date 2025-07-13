@@ -72,28 +72,45 @@ st.markdown("ℹ️ Bu analiz geçmiş yıllara dayanarak yapıldığı için 20
 # Sonuç tablosu
 import streamlit.components.v1 as components
 
-html_table = eslesen_okullar[["İLÇE", "OKUL ADI", "2022", "2023", "2024", "2025 Tahmin", "ALAN", "OKUL TÜRÜ"]].to_html(index=False, escape=False)
+html_table = eslesen_okullar[["İLÇE", "OKUL ADI", "2022", "2023", "2024", "2025 Tahmin", "ALAN", "OKUL TÜRÜ"]].to_html(index=False, escape=False, classes=["lgs-table"])
 
 wrapped_html = f"""
-<div style="width: 80%; margin: auto;">
-    <style>
-        table {{
-            width: 100%;
-            table-layout: fixed;
-            word-wrap: break-word;
-            white-space: normal;
-            font-size: 14px;
-            border-collapse: collapse;
-        }}
-        th, td {{
-            padding: 6px;
-            text-align: center;
-            vertical-align: middle;
-        }}
-        th {{
-            background-color: #f0f2f6;
-        }}
-    </style>
+<style>
+    div.lgs-container {{
+        width: 80%;
+        margin: auto;
+    }}
+    table.lgs-table {{
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: collapse;
+        font-size: 14px;
+    }}
+    table.lgs-table th, table.lgs-table td {{
+        text-align: center;
+        vertical-align: middle;
+        padding: 6px;
+        word-wrap: break-word;
+        white-space: normal;
+    }}
+    table.lgs-table th {{
+        background-color: #f0f2f6;
+    }}
+
+    /* Sayısal sütunlara özel daraltma */
+    table.lgs-table td:nth-child(3),
+    table.lgs-table td:nth-child(4),
+    table.lgs-table td:nth-child(5),
+    table.lgs-table td:nth-child(6),
+    table.lgs-table th:nth-child(3),
+    table.lgs-table th:nth-child(4),
+    table.lgs-table th:nth-child(5),
+    table.lgs-table th:nth-child(6) {{
+        width: 60px;
+    }}
+</style>
+
+<div class="lgs-container">
     {html_table}
 </div>
 """
