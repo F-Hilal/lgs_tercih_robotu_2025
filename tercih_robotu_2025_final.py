@@ -84,16 +84,19 @@ wrapped_html = f"""
             white-space: normal;
             font-size: 14px;
             border-collapse: collapse;
+            font-style: normal;
         }}
         th {{
-            text-align: center;  /* Başlıkları ortalar */
+            text-align: center;       /* Başlıklar ortalı */
             background-color: #f2f2f2;
             padding: 6px;
+            font-style: normal;
         }}
         td {{
-            text-align: left;  /* Verileri sola hizalar */
+            text-align: center;       /* Hücre verileri ortalı */
             padding: 6px;
             vertical-align: top;
+            font-style: normal;
         }}
     </style>
     {html_table}
