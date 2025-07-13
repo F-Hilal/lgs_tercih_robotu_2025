@@ -76,6 +76,11 @@ html_table = eslesen_okullar[["İLÇE", "OKUL ADI", "2022", "2023", "2024", "202
 
 wrapped_html = f"""
 <style>
+    .custom-table-container {{
+        max-width: 1100px;
+        margin: auto;
+        overflow-x: auto;
+    }}
     table {{
         width: 100%;
         table-layout: fixed;
@@ -87,6 +92,8 @@ wrapped_html = f"""
         padding: 8px;
         text-align: center;
         vertical-align: middle;
+        word-wrap: break-word;
+        white-space: normal;
     }}
     th {{
         background-color: #f0f2f6;
@@ -96,20 +103,19 @@ wrapped_html = f"""
         background-color: #f9f9f9;
     }}
 
-    /* 📌 Sütun özel genişlikler */
+    /* Sütun genişlikleri */
     td:nth-child(1), th:nth-child(1) {{ width: 120px; text-align: left; }}
-    td:nth-child(2), th:nth-child(2) {{ text-align: left; }}
+    td:nth-child(2), th:nth-child(2) {{ max-width: 250px; text-align: left; }}
     td:nth-child(7), th:nth-child(7) {{ width: 120px; text-align: left; }}
     td:nth-child(8), th:nth-child(8) {{ width: 120px; text-align: left; }}
 
-    /* 🔢 Sayısal sütunlar dar */
     td:nth-child(3), td:nth-child(4), td:nth-child(5), td:nth-child(6),
     th:nth-child(3), th:nth-child(4), th:nth-child(5), th:nth-child(6) {{
         width: 60px;
     }}
 </style>
 
-<div style="overflow-x:auto;">
+<div class="custom-table-container">
     {html_table}
 </div>
 """
