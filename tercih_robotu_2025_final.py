@@ -83,24 +83,35 @@ wrapped_html = f"""
     }}
     table {{
         width: 100%;
+        table-layout: fixed;
         border-collapse: collapse;
         font-size: 14px;
-        table-layout: auto;  /* Otomatik genişlik */
-        word-wrap: break-word;
     }}
     th, td {{
-        padding: 6px 8px;
-        border: 1px solid #ddd;
-        text-align: left;
-        vertical-align: top;
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: center;
+        vertical-align: middle;
+        word-wrap: break-word;
         white-space: normal;
     }}
     th {{
-        background-color: #f1f3f6;
+        background-color: #f0f2f6;
         font-weight: bold;
     }}
     tr:nth-child(even) {{
         background-color: #f9f9f9;
+    }}
+
+    /* Sütun genişlikleri */
+    td:nth-child(1), th:nth-child(1) {{ width: 120px; text-align: left; }}
+    td:nth-child(2), th:nth-child(2) {{ max-width: 250px; text-align: left; }}
+    td:nth-child(7), th:nth-child(7) {{ width: 120px; text-align: left; }}
+    td:nth-child(8), th:nth-child(8) {{ width: 120px; text-align: left; }}
+
+    td:nth-child(3), td:nth-child(4), td:nth-child(5), td:nth-child(6),
+    th:nth-child(3), th:nth-child(4), th:nth-child(5), th:nth-child(6) {{
+        width: 60px;
     }}
 </style>
 
@@ -108,7 +119,6 @@ wrapped_html = f"""
     {html_table}
 </div>
 """
-
 st.markdown(wrapped_html, unsafe_allow_html=True)
 
 # Excel olarak indirme
