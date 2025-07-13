@@ -75,24 +75,42 @@ import streamlit.components.v1 as components
 html_table = eslesen_okullar[["İLÇE", "OKUL ADI", "2022", "2023", "2024", "2025 Tahmin", "ALAN", "OKUL TÜRÜ"]].to_html(index=False, escape=False)
 
 wrapped_html = f"""
-<div style="overflow-x:auto; max-width:100%;">
-    <style>
-        table {{
-            width: 100%;
-            table-layout: auto;
-            word-wrap: break-word;
-            white-space: normal;
-            font-size: 14px;
-        }}
-        th, td {{
-            padding: 6px;
-            text-align: left;         /* YATAY: sola hizala */
-            vertical-align: middle;   /* DİKEY: ortala */
-        }}
-    </style>
+<style>
+    table {{
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: collapse;
+        font-size: 14px;
+    }}
+    th, td {{
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: center;
+        vertical-align: middle;
+    }}
+    th {{
+        background-color: #f0f2f6;
+        font-weight: bold;
+    }}
+    tr:nth-child(even) {{
+        background-color: #f9f9f9;
+    }}
+
+    /* 🎯 Sadece belirli sütunlara özel stil */
+    td:nth-child(1), td:nth-child(2), td:nth-child(7), th:nth-child(1), th:nth-child(2), th:nth-child(7) {{
+        text-align: left;
+        word-wrap: break-word;
+        word-break: break-word;
+        white-space: normal;
+        max-width: 200px;
+    }}
+</style>
+
+<div style="overflow-x:auto;">
     {html_table}
 </div>
 """
+
 st.markdown(wrapped_html, unsafe_allow_html=True)
 
 # Excel olarak indirme
