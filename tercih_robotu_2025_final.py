@@ -83,18 +83,22 @@ wrapped_html = f"""
             word-wrap: break-word;
             white-space: normal;
             font-size: 14px;
+            border-collapse: collapse;
         }}
-        th, td {{
+        th {{
+            text-align: center;  /* Başlıkları ortalar */
+            background-color: #f2f2f2;
             padding: 6px;
-            text-align: left;
+        }}
+        td {{
+            text-align: left;  /* Verileri sola hizalar */
+            padding: 6px;
             vertical-align: top;
         }}
     </style>
     {html_table}
 </div>
 """
-
-st.subheader(f"📋 {alt_sinir:.2f}–{ust_sinir:.2f} arası uygun okullar")
 st.markdown(wrapped_html, unsafe_allow_html=True)
 
 # Excel olarak indirme
