@@ -97,13 +97,13 @@ wrapped_html = f"""
     /* İLÇE sütunu daraltıldı */
     table.lgs-table td:nth-child(1),
     table.lgs-table th:nth-child(1) {{
-        width: 90px;
+        width: 106px;
     }}
 
     /* OKUL ADI sütunu genişletildi */
     table.lgs-table td:nth-child(2),
     table.lgs-table th:nth-child(2) {{
-        width: 300px;
+        width: 284px;
     }}
 
     /* Sayısal sütunlara özel daraltma */
