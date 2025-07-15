@@ -114,21 +114,3 @@ wrapped_html = f"""
 """
 
 st.markdown(wrapped_html, unsafe_allow_html=True)
-
-# Excel olarak indirme
-import io
-
-def convert_df_to_excel(df):
-    output = io.BytesIO()
-    with pd.ExcelWriter(output, engine="openpyxl") as writer:
-        df.to_excel(writer, index=False, sheet_name="Tercih Listesi")
-    return output.getvalue()
-
-excel_data = convert_df_to_excel(eslesen_okullar)
-
-st.download_button(
-    label="📥 Listeyi Excel Olarak İndir",
-    data=excel_data,
-    file_name="tercih_listesi_2025.xlsx",
-    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-)
